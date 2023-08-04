@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>DPDA Simulator</title>
+        <link rel="stylesheet" href="./styles.css">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <h1>Deterministic Pushdown Automata Simulator</h1>
+        <div id="simulationContainer">
+
+            <!-- <div id="btnContainer">
+                
+            </div> -->
+            <div class="btn">Step</div>
+            <div class="btn">Skip to end</div>
+
+            <div id="simulation">
+                <div>
+                    <span class="label">Current State: </span> <span id="curState">A</span>
+                </div>
+                <div>
+                    <span class="label"> Input String: </span> <span id="inputStr">0110</span>
+                </div>
+                <div>
+                    <span class="label">Stack Contents: </span> <span id="stack">XXY</span>
+                </div>
+            </div>
+            
+        </div>
+        <main>
+            <div>
+                <h3>Enter Input String</h3>
+                <input type="text">
+            </div>
+            <div id="inputContainer">
+                <h3>Enter Machine Definition</h3>
+                <textarea id="machineDefinitionInput"></textarea>
+            </div>
+            <div> 
+                <h3>Sample Machine Definition</h3>
+                <textarea disabled>
+A B C                           # States 
+0 1                             # Strimulus symbols
+X Y Z                           # Stack symbols (include initial stack symbol)
+A                               # Start state
+Z                               # Initial stack symbol 
+C                               # Final states
+# Define 0 or more transitions 
+B 0 X C Y                       # Adds (C, Y) to f(B, 0, X) 
+A &lambda; &lambda; B, &lambda;                      # Copy the lambda symbol from here: &lambda;
+                </textarea>
+            </div>
+        </main>
+    </body>
+</html>

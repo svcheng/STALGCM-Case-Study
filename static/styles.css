@@ -1,0 +1,61 @@
+h1, #simulation div, main div {
+    text-align: center;
+}
+
+body {
+    margin: 2rem;
+}
+
+textarea {
+    min-width: 80%;
+    min-height: 24vh;
+    font-size: 2vh;
+}
+
+.label {
+    display: flex;
+    justify-content: space-between;
+    width:fit-content;
+    margin: auto;
+}
+
+#simulationContainer {
+    background-color: antiquewhite;
+    padding: 1rem;
+}
+
+#btnContainer {
+    display: flex;
+    align-items: center;
+    background-color: aqua;
+    width: fit-content;
+}
+
+.btn {
+    border-width: 1rem;
+    border-radius: 1.5rem;
+    padding: 0.5rem;
+    font-size: 2vh;
+
+    text-align: center;
+    background-color: black;
+    color: white;
+
+    flex-basis: 8rem;
+	flex-grow: 0;
+	flex-shrink: 0;
+
+    width: 10%;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
+.label {
+    font-weight: bold;
+    font-size: 2vh;
+}
+
+#curState, #inputStr, #stack {
+    font-weight: 100;
+    font-size: 4vh;
+}
