@@ -48,6 +48,11 @@ textarea {
     width: 10%;
     margin: auto;
     margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: gray;
 }
 
 .label {
@@ -58,4 +63,9 @@ textarea {
 #curState, #inputStr, #stack {
     font-weight: 100;
     font-size: 4vh;
+}
+
+textarea#machineDefinitionInput {
+    min-width: 1000px;
+    margin-bottom: 1rem;
 }
