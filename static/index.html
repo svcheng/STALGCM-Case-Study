@@ -10,11 +10,8 @@
         <h1>Deterministic Pushdown Automata Simulator</h1>
         <div id="simulationContainer" hidden>
 
-            <!-- <div id="btnContainer">
-                
-            </div> -->
-            <div class="btn">Step</div>
-            <div class="btn">Skip to end</div>
+            <div class="btn" id="stepBtn">Step</div>
+            <!-- <div class="btn">Skip to end</div> -->
 
             <div id="simulation">
                 <div>
@@ -38,7 +35,7 @@
                 <h3>Enter Machine Definition</h3>
                 <textarea id="machineDefinitionInput"></textarea>
             </div>
-            <div class="btn" id="enterBtn">Enter</div>
+            <div class="btn" id="enterBtn">Save</div>
             <div class="btn" id="runBtn">Run</div>
             <div> 
                 <h3>Sample Machine Definition</h3>
@@ -50,7 +47,7 @@ A                    # Start state
 Z                    # Initial stack symbol 
 C                    # Final states
 B 0 X C Y            # Define 0 or more transitions with each transition occupying a new line. Sample sets f(B, 0, X) to (C, Y).
-A &lambda; &lambda; B, &lambda;           # Copy the lambda symbol from here: &lambda;
+A &lambda; &lambda; B &lambda;            # Copy the lambda symbol from here: &lambda;
                 </textarea>
             </div>
         </main>

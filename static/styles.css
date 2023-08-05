@@ -63,3 +63,11 @@ textarea {
     font-weight: 100;
     font-size: 4vh;
 }
+
+.selected {
+    background-color: aqua;
+}
+
+.rejected {
+    background-color: red;
+}
