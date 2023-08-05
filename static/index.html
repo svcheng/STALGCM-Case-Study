@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>Deterministic Pushdown Automata Simulator</h1>
-        <div id="simulationContainer">
+        <div id="simulationContainer" hidden>
 
             <!-- <div id="btnContainer">
                 
@@ -18,13 +18,13 @@
 
             <div id="simulation">
                 <div>
-                    <span class="label">Current State: </span> <span id="curState">A</span>
+                    <span class="label">Current State:</span> <span id="curState"></span>
                 </div>
                 <div>
-                    <span class="label"> Input String: </span> <span id="inputStr">0110</span>
+                    <span class="label"> Input String:</span> <span id="inputStr"></span>
                 </div>
                 <div>
-                    <span class="label">Stack Contents: </span> <span id="stack">XXY</span>
+                    <span class="label">Stack Contents:</span> <span id="stack"></span>
                 </div>
             </div>
             
@@ -32,13 +32,14 @@
         <main>
             <div>
                 <h3>Enter Input String</h3>
-                <input type="text">
+                <input id="userInput" type="text">
             </div>
             <div id="inputContainer">
                 <h3>Enter Machine Definition</h3>
                 <textarea id="machineDefinitionInput"></textarea>
             </div>
             <div class="btn" id="enterBtn">Enter</div>
+            <div class="btn" id="runBtn">Run</div>
             <div> 
                 <h3>Sample Machine Definition</h3>
                 <textarea id="sampleMachine" disabled>

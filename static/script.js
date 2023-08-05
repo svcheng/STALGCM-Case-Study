@@ -2,12 +2,14 @@
 let states = []
 let inputSymbols = []
 let stackSymbols = []
-let qi
+let qi = ""
 let Z = "Z"
 let F = []
 let transitions = []
 
-// Object constructor that parses the string a user entered to define a transition into a JS object
+let stack = []
+
+// Object constructor that parses the string a user entered defining a transition into a JS object
 function Transition(str) {
     const trans = str.split(" ")
 
@@ -20,9 +22,8 @@ function Transition(str) {
 
 document.getElementById("enterBtn").addEventListener("click", () => {
     let input = document.getElementById("machineDefinitionInput").value.trim().split("\n")
-    for (let i=0; i < input.length; i += 1) {
+    for (let i=0; i < input.length; i += 1) 
         input[i] = input[i].trim()
-    }
 
     states = input[0].split()
     inputSymbols = input[1].split()
@@ -34,6 +35,25 @@ document.getElementById("enterBtn").addEventListener("click", () => {
     // parse transitions
     for (let i = 6; i < input.length; i += 1) {
         transitions.push(new Transition(input[i]))
-        console.log(transitions[transitions.length - 1])
+    }
+})
+
+document.getElementById("runBtn").addEventListener("click", () => {
+    let userInput = document.getElementById("userInput").value
+    console.log(userInput)
+    if (!userInput) {
+        window.alert("Enter an input string")
+        return
+    }
+        
+    document.getElementById("simulationContainer").hidden = false
+    document.getElementById("curState").textContent = qi
+
+    // create hmtl element for every input symbol
+    let cont = document.getElementById("inputStr")
+    for (let i = 0; i < userInput.length; i += 1) {
+        let elem = document.createElement("span")
+        elem.textContent = userInput[i]
+        cont.appendChild(elem)
     }
 })

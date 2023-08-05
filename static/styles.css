@@ -50,6 +50,10 @@ textarea {
     margin-bottom: 1rem;
 }
 
+.btn:hover {
+    cursor: pointer;
+}
+
 .label {
     font-weight: bold;
     font-size: 2vh;
