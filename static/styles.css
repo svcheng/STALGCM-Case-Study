@@ -1,5 +1,37 @@
-h1, #simulation div, main div {
+:root {
+    --mainFont: "Cascadia Mono";
+    --bgColor: #190618;
+    --btnColor: #e0caac;
+    --btnTextColor: #2c0c28;
+    --subColor: #4c1e48;
+    --textColor: #eeeae4;
+    --highlight: #ff7700;
+}
+
+@font-face {
+    font-family: 'Cascadia Mono';
+    src: url('CascadiaMono.ttf') format('truetype');
+}
+
+body {
+    font-family: var(--mainFont);
+    background-color: var(--bgColor);
+    color: var(--textColor);
+}
+
+h1 {
     text-align: center;
+    margin-bottom: 4rem;
+}
+
+#simulation div {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#simulation div, main div {
+    text-align: center;
+    margin-bottom: 3rem;
 }
 
 body {
@@ -8,8 +40,28 @@ body {
 
 textarea {
     min-width: 80%;
-    min-height: 24vh;
+    min-height: 25vh;
     font-size: 2vh;
+
+    padding: 0.6rem;
+    border-width: 0px;
+    background-color: var(--btnTextColor);
+    color: var(--textColor);
+
+    border-radius: 0.5rem;
+}
+
+input {
+    padding: 0.6rem;
+    border-width: 0px;
+    background-color: var(--btnTextColor);
+    color: var(--textColor);
+
+    border-radius: 0.5rem;
+}
+
+#runBtn {
+    margin-bottom: 4rem;
 }
 
 .label {
@@ -20,15 +72,11 @@ textarea {
 }
 
 #simulationContainer {
-    background-color: antiquewhite;
+    background-color: var(--btnTextColor);
     padding: 1rem;
-}
-
-#btnContainer {
-    display: flex;
-    align-items: center;
-    background-color: aqua;
-    width: fit-content;
+    border-radius: 0.5rem;
+    margin-bottom: 2rem;
+    padding-top: 2rem;
 }
 
 .btn {
@@ -36,10 +84,11 @@ textarea {
     border-radius: 1.5rem;
     padding: 0.5rem;
     font-size: 2vh;
+    font-weight: bold;
 
     text-align: center;
-    background-color: black;
-    color: white;
+    background-color: var(--btnColor);
+    color: var(--btnTextColor);
 
     flex-basis: 8rem;
 	flex-grow: 0;
@@ -65,7 +114,9 @@ textarea {
 }
 
 .selected {
-    background-color: aqua;
+    background-color: var(--highlight);
+    border-radius: 0.2rem;
+    color: var(--btnTextColor)
 }
 
 .accepted {
@@ -82,7 +133,8 @@ textarea {
 }
 
 #verdict {
-    margin-top: 0.5em;
+    margin-top: 0.3em;
     font-size: 4vw;
     font-weight: bold;
 }
+
