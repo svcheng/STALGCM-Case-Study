@@ -23,32 +23,35 @@
                 <div>
                     <span class="label">Stack Contents:</span> <span id="stack"></span>
                 </div>
+                <div id="verdict" hidden></div>
             </div>
             
         </div>
         <main>
             <div>
-                <h3>Enter Input String</h3>
+                <h3>Enter Input String (Leave Empty For &lambda;)</h3>
                 <input id="userInput" type="text">
             </div>
             <div id="inputContainer">
                 <h3>Enter Machine Definition</h3>
                 <textarea id="machineDefinitionInput"></textarea>
             </div>
-            <div class="btn" id="enterBtn">Enter</div>
+            <div class="btn" id="enterBtn">Enter Machine</div>
             <p id="saved" hidden>Machine definition saved!</p>
             <div class="btn" id="runBtn">Run</div>
             <div> 
                 <h3>Sample Machine Definition</h3>
                 <textarea id="sampleMachine" disabled>
-A B C                # States 
-0 1                  # Stimulus symbols
-X Y Z                # Stack symbols (include initial stack symbol)
-A                    # Start state
-Z                    # Initial stack symbol 
-C                    # Final states
-B 0 X C Y            # Define 0 or more transitions with each transition occupying a new line. Sample sets f(B, 0, X) to (C, Y).
-A &lambda; &lambda; B &lambda;            # Copy the lambda symbol from here: &lambda;
+A B C               # States 
+0 1                 # Stimulus symbols
+X Z                 # Stack symbols (include initial stack symbol)
+A                   # Start state
+Z                   # Initial stack symbol 
+C                   # Final states
+A 0 &lambda; A X           # Define 0 or more transitions with each transition occupying a new line
+A 1 X B &lambda;           # This line sets f(A, 1, X) to {(B, &lambda;)}
+B 1 X B &lambda;           # Copy the lambda symbol from here: &lambda;
+B &lambda; Z C &lambda;    
                 </textarea>
             </div>
         </main>

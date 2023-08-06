@@ -4,7 +4,7 @@ let inputSymbols = []
 let stackSymbols = []
 let qi = ""
 let Z = "Z"
-let F = []
+let finalStates = []
 let transitions = []
 
 let curState = ""
@@ -47,7 +47,7 @@ document.getElementById("enterBtn").addEventListener("click", () => {
     stackSymbols = input[2].split()
     qi = input[3]
     Z = input[4]
-    F = input[5].split()
+    finalStates = input[5].split()
 
     // parse transitions
     transitions = []
@@ -57,6 +57,7 @@ document.getElementById("enterBtn").addEventListener("click", () => {
 
 document.getElementById("runBtn").addEventListener("click", () => {
     document.getElementById("saved").hidden = true
+    document.getElementById("verdict").hidden = true
 
     // resets
     let cont = document.getElementById("inputStr")
@@ -106,6 +107,11 @@ function takeTransition(input) {
 }
 
 function step() {
+    // do nothing if string was already accepted/rejected
+    let verdict = document.getElementById("verdict")
+    if (verdict.hidden === false)
+        return
+
     let symbols = document.getElementById("inputStr").children
 
     // find next input
@@ -118,20 +124,26 @@ function step() {
         }
     }
 
-    let trans
-    if (doneReading) {
-        trans = takeTransition("")
-    }
-    else {
-        trans = takeTransition(symbols[index].textContent)
-    }
+    // take transition
+    let trans = doneReading ? takeTransition("") : takeTransition(symbols[index].textContent)
 
+    // no valid transition to take
     if (trans === false) {
+        verdict.hidden = false
+
+        if (doneReading && finalStates.includes(curState) && stack === []) {
+            verdict.textContent = "ACCEPTED"
+            verdict.setAttribute("class", "accepted")
+        }
+        else {
+            verdict.textContent = "REJECTED"
+            verdict.setAttribute("class", "rejected")
+        }
         return
     }
 
     // update input string display
-    if (!doneReading) {
+    if (!doneReading && trans.read !== "") {
         symbols[index].setAttribute("class", "")
 
         if (index < symbols.length - 1) {
