@@ -34,25 +34,9 @@ function Transition(str) {
         this.push = trans[4]
 }
 
-function reset () {
-    states = []
-    inputSymbols = []
-    stackSymbols = []
-    qi = ""
-    Z = "Z"
-    F = []
-    transitions = []
-
-    curState = ""
-    stack = Z
-
-    document.getElementById("curState").innerHTML = ""
-    document.getElementById("inputStr").innerHTML = ""
-    document.getElementById("stack").innerHTML = ""
-}
-
 document.getElementById("enterBtn").addEventListener("click", () => {
-    reset()
+    document.getElementById("simulationContainer").hidden = true
+    document.getElementById("saved").hidden = false
 
     let input = document.getElementById("machineDefinitionInput").value.trim().split("\n")
     for (let i=0; i < input.length; i += 1) 
@@ -66,11 +50,14 @@ document.getElementById("enterBtn").addEventListener("click", () => {
     F = input[5].split()
 
     // parse transitions
+    transitions = []
     for (let i = 6; i < input.length; i += 1) 
         transitions.push(new Transition(input[i]))
 })
 
 document.getElementById("runBtn").addEventListener("click", () => {
+    document.getElementById("saved").hidden = true
+
     // resets
     let cont = document.getElementById("inputStr")
     cont.innerHTML = ""
@@ -95,11 +82,22 @@ document.getElementById("runBtn").addEventListener("click", () => {
     } 
 })
 
-// returns the transition that the machine can take or an empty object if there is none
-function findTransition(input) {
+// finds the transition that the machine can take, returning the transition if one is found, false otherwise
+function takeTransition(input) {
     for (let i = 0; i < transitions.length; i += 1) {
         let t = transitions[i]
         if (t.oldState === curState && (t.pop === stack[0] || t.pop === "") && (t.read === input || t.read === "")) {
+            // take transition
+            curState = t.newState
+
+            if (t.pop !== "")
+                stack = stack.substring(1) // pop from stack
+            stack = t.push + stack // push onto stack
+            
+            // update display
+            document.getElementById("curState").textContent = curState
+            document.getElementById("stack").textContent = stack
+
             return t
         }
     }
@@ -111,31 +109,35 @@ function step() {
     let symbols = document.getElementById("inputStr").children
 
     // find next input
-    let i
-    for (i = 0; i < symbols.length; i += 1) {
-        if (symbols[i].getAttribute("class") == "selected")
-            break
+    let doneReading = true
+    let index
+    for (let i = 0; i < symbols.length; i += 1) {
+        if (symbols[i].getAttribute("class") == "selected") {
+            index = i
+            doneReading = false
+        }
     }
 
-    let trans = findTransition(symbols[i].textContent)
+    let trans
+    if (doneReading) {
+        trans = takeTransition("")
+    }
+    else {
+        trans = takeTransition(symbols[index].textContent)
+    }
 
     if (trans === false) {
         return
     }
 
-    // take transition
-    curState = trans.newState
+    // update input string display
+    if (!doneReading) {
+        symbols[index].setAttribute("class", "")
 
-    if (trans.pop !== "")
-        stack = stack.substring(1) // pop from stack
-    stack = trans.push + stack // push onto stack
-    
-    // update display
-    document.getElementById("curState").textContent = curState
-    document.getElementById("stack").textContent = stack
-
-    symbols[i].setAttribute("class", "")
-    symbols[i + 1].setAttribute("class", "selected")
+        if (index < symbols.length - 1) {
+            symbols[index + 1].setAttribute("class", "selected")
+        }
+    }
 }
 
 document.getElementById("stepBtn").addEventListener("click", () => {

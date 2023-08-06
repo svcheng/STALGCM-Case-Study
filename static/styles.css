@@ -71,3 +71,7 @@ textarea {
 .rejected {
     background-color: red;
 }
+
+#saved {
+    text-align: center;
+}
