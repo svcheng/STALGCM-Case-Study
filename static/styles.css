@@ -101,6 +101,7 @@ input {
 
 .btn:hover {
     cursor: pointer;
+    background-color: var(--highlight);
 }
 
 .label {

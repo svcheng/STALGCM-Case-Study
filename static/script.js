@@ -58,6 +58,7 @@ document.getElementById("enterBtn").addEventListener("click", () => {
 document.getElementById("runBtn").addEventListener("click", () => {
     document.getElementById("saved").hidden = true
     document.getElementById("verdict").hidden = true
+    window.scrollTo(0, 0);
 
     // resets
     let cont = document.getElementById("inputStr")
@@ -106,6 +107,7 @@ function takeTransition(input) {
     return false
 }
 
+// returns whether a verdict has been given yet
 function step() {
     // do nothing if string was already accepted/rejected
     let verdict = document.getElementById("verdict")
@@ -131,7 +133,7 @@ function step() {
     if (trans === false) {
         verdict.hidden = false
 
-        if (doneReading && finalStates.includes(curState) && stack === []) {
+        if (doneReading && finalStates.includes(curState) && stack === "") {
             verdict.textContent = "ACCEPTED"
             verdict.setAttribute("class", "accepted")
         }
@@ -139,7 +141,7 @@ function step() {
             verdict.textContent = "REJECTED"
             verdict.setAttribute("class", "rejected")
         }
-        return
+        return true
     }
 
     // update input string display
@@ -150,8 +152,15 @@ function step() {
             symbols[index + 1].setAttribute("class", "selected")
         }
     }
+
+    return false
 }
 
-document.getElementById("stepBtn").addEventListener("click", () => {
-    step()
+document.getElementById("stepBtn").addEventListener("click", step)
+
+document.getElementById("skipBtn").addEventListener("click", () => {
+    let doneReading = !document.getElementById("verdict").hidden
+    while (!doneReading) {
+        doneReading = step()
+    }
 })
