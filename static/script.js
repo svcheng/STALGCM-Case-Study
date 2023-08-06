@@ -97,12 +97,12 @@ document.getElementById("runBtn").addEventListener("click", () => {
 
 // returns the transition that the machine can take or an empty object if there is none
 function findTransition(input) {
-    transitions.forEach((t) => {
-        console.log(t.oldState + ' ' + curState)
-        if (t.oldState === curState && t.pop === stack[0] && (t.read === input || t.read === "")) {
+    for (let i = 0; i < transitions.length; i += 1) {
+        let t = transitions[i]
+        if (t.oldState === curState && (t.pop === stack[0] || t.pop === "") && (t.read === input || t.read === "")) {
             return t
         }
-    })
+    }
 
     return false
 }
@@ -118,13 +118,11 @@ function step() {
     }
 
     let trans = findTransition(symbols[i].textContent)
+
     if (trans === false) {
         return
     }
-    console.log(trans)
-    // console.log(trans.newState)
-    // console.log(trans.pop)
-    // console.log(trans.push)
+
     // take transition
     curState = trans.newState
 
