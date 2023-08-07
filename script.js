@@ -1,3 +1,5 @@
+// Group members: Samuel Cheng, Kendrick Pua, Tyrone Uy
+
 // Machine Components
 let states = []
 let inputSymbols = []
